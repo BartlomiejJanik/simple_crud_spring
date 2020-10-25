@@ -31,4 +31,7 @@ public class Car {
         car.id = carDTO.getId();
         return car;
     }
+    public CarDTO toDto(){
+        return new CarDTO(id,model,vin,colour.name());
+    }
 }
