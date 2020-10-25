@@ -6,32 +6,33 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String model;
     private String vin;
-    @Enumerated
-    private Colour colour;//fixme!!
+    @Enumerated(EnumType.STRING)
+    private Colour colour;
 
     public Car() {
     }
 
     public Car(String model, String vin, Colour colour) {
-
+        super();
         this.model = model;
         this.vin = vin;
         this.colour = colour;
     }
 
-    public static Car apply(CarDTO carDTO){
+    public static Car apply(CarDTO carDTO) {
         Car car = new Car();
-        car.colour=Colour.valueOf(carDTO.getColour());
-        car.model=carDTO.getModel();
+        car.colour = Colour.valueOf(carDTO.getColour());
+        car.model = carDTO.getModel();
         car.vin = carDTO.getVin();
         car.id = carDTO.getId();
         return car;
     }
-    public CarDTO toDto(){
-        return new CarDTO(id,model,vin,colour.name());
+
+    public CarDTO toDto() {
+        return new CarDTO(id, model, vin, colour.name());
     }
 }

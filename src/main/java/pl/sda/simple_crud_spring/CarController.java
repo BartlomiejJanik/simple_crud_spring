@@ -21,4 +21,13 @@ public class CarController {
     public List<CarDTO> showCarList(){
         return carService.showCarList();
 }
+@GetMapping("/{id}")
+    public CarDTO findCarById(@PathVariable Integer id){//przechwyca id z url
+        return carService.findCarById(id);
+
+}@GetMapping("/vin/{vin}")
+    public CarDTO findCarByVin(@PathVariable String vin){//przechwyca id z url
+        return carService.findCarByVin(vin);
+
+}
 }
