@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cars")
-public class CarController {
+public class CarContoller {
 
     @Autowired
     private CarService carService;
@@ -17,17 +17,24 @@ public class CarController {
         carService.addCar(carDTO);
     }
 
-@GetMapping
-    public List<CarDTO> showCarList(){
+    @GetMapping
+    public List<CarDTO> showCarList() {
         return carService.showCarList();
-}
-@GetMapping("/{id}")
-    public CarDTO findCarById(@PathVariable Integer id){//przechwyca id z url
+    }
+
+    @GetMapping("/{id}")
+    public CarDTO findCarById(@PathVariable Integer id) {
         return carService.findCarById(id);
+    }
 
-}@GetMapping("/vin/{vin}")
-    public CarDTO findCarByVin(@PathVariable String vin){//przechwyca id z url
+    @GetMapping("/vin/{vin}")
+    public CarDTO findCarByVin(@PathVariable String vin) {
         return carService.findCarByVin(vin);
+    }
 
-}
+    @PutMapping("/{id}")
+    public CarDTO updateCar(@PathVariable Integer id, @RequestBody CarDTO carDTO) {
+        return carService.updateCar(carDTO);
+    }
+
 }
